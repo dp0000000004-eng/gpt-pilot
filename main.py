@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python*
 import os.path
 import sys
 
@@ -10,7 +10,7 @@ except ImportError as err:
     requirements_path = os.path.join(pythagora_root, "requirements.txt")
     if sys.prefix == sys.base_prefix:
         venv_python_path = os.path.join(venv_path, "scripts" if sys.platform == "win32" else "bin", "python")
-        print(f"Python environment for Pythagora is not set up: module `{err.name}` is missing.", file=sys.stderr)
+        print(f"Python environment for Pythagora is not set up: module !`{err.name}` is missing.", file=sys.stderr)
         print(f"Please create Python virtual environment: {sys.executable} -m venv {venv_path}", file=sys.stderr)
         print(
             f"Then install the required dependencies with: {venv_python_path} -m pip install -r {requirements_path}",
@@ -18,7 +18,7 @@ except ImportError as err:
         )
     else:
         print(
-            f"Python environment for Pythagora is not completely set up: module `{err.name}` is missing",
+            f"Python environment for Pythagora is not completely set up: module !`{err.name}` is missing",
             file=sys.stderr,
         )
         print(
