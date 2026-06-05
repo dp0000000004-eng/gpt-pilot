@@ -25,7 +25,6 @@ async def test_send_message():
         extra_info=None,
     )
 
-
 @pytest.mark.asyncio
 async def test_stream_handler():
     ui = MagicMock(spec=UIBase)
