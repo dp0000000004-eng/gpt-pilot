@@ -1,13 +1,9 @@
-import asyncio
-import datetime
-import json
-import sys
+import asyncio, datetime, json, sys
 from enum import Enum
 from time import time
 from typing import Any, Callable, Optional, Tuple
 
-import httpx
-import tiktoken
+import httpx, tiktoken
 from httpx import AsyncClient
 
 from core.config import LLMConfig, LLMProvider
@@ -149,10 +145,7 @@ class BaseLLMClient:
         :param json_mode: If True, the response is expected to be JSON.
         :return: Tuple of the (parsed) response and request log entry.
         """
-        import anthropic
-        import groq
-        import openai
-
+        import anthropic, groq, openai
         if temperature is None:
             temperature = self.config.temperature
 
@@ -330,17 +323,17 @@ class BaseLLMClient:
                             )
                             sys.exit(0)
                             # TODO implement this to not crash in parallel
-                            # user_response = await self.ui.ask_question(
-                            #     'Not enough tokens left, please top up your account and press "Continue".',
-                            #     buttons={"continue": "Continue", "exit": "Exit"},
-                            #     buttons_only=True,
-                            #     extra_info={"not_enough_tokens": True},
-                            #     source=pythagora_source,
-                            # )
-                            # if user_response.button == "continue":
-                            #     continue
-                            # else:
-                            #     raise APIError("Not enough tokens left")
+                            user_response = await self.ui.ask_question(
+                                'Not enough tokens left, please top up your account and press "Continue".',
+                                buttons={"continue": "Continue", "exit": "Exit"},
+                                buttons_only=True,
+                                extra_info={"not_enough_tokens": True},
+                                source=pythagora_source,
+                            )
+                            if user_response.button == "continue":
+                                continue
+                            else:
+                                raise APIError("Not enough tokens left")
                         except Exception:
                             raise APIError("Not enough tokens left")
 
